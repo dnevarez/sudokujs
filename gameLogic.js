@@ -55,7 +55,7 @@ var Sudoku = ( function ( $ ){
        validate: function(){
          var isValid;
 
-         isValid = game.validateMatrix();
+         isValid = _game.validateMatrix();
          $( '.sudoku-container' ).toggleClass( 'valid-matrix', isValid );
        },
 
@@ -250,7 +250,7 @@ var Sudoku = ( function ( $ ){
       * @returns {Boolean} Valid or invalid input
       */
      validateNumber: function( num, rowID, colID, oldNum ) {
-         var isValid: = true,
+         var isValid = true,
            // Section
            sectRow = Math.floor( rowID / 3 ),
            sectCol = Math.floor( colID / 3 );
@@ -329,7 +329,7 @@ var Sudoku = ( function ( $ ){
                     // Validate the value
                     isValid = this.validateNumber( val, row, col, val );
                     this.$cellMatrix[row][col].toggleClass( 'sudoku-input-error', !isValid );
-                    this ( !isValid ) {
+                    if ( !isValid ) {
                           hasError = true;
                     }
               }
@@ -354,7 +354,7 @@ var Sudoku = ( function ( $ ){
           } else {
                 sqRow = $nextSquare.data( 'row' );
                 sqCol = $nextSquare.data( 'col' );
-                legalValues = ths.findLegalValuesForSquare( sqRow, sqCol );
+                legalValues = this.findLegalValuesForSquare( sqRow, sqCol );
 
                 // Find the segment id
                 sectRow = Math.floor( sqRow / 3 );
